@@ -1,0 +1,21 @@
+{
+  "name": "rental-cycle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-dev:client": "cd client-app && npm run dev -- -p 8080",
+    "start-dev:server": "cd server && npm run dev -- -p 8999",
+    "start-dev:system": "cd system-app && npm run dev -- -p 8082"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KitaharaMugiro/rental-cycle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KitaharaMugiro/rental-cycle/issues"
+  },
+  "homepage": "https://github.com/KitaharaMugiro/rental-cycle#readme"
+}
