@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/KitaharaMugiro/rental-cycle/issues"
   },
-  "homepage": "https://github.com/KitaharaMugiro/rental-cycle#readme"
+  "homepage": "https://github.com/KitaharaMugiro/rental-cycle#readme",
+  "dependencies": {
+    "forever": "^2.0.0"
+  }
 }

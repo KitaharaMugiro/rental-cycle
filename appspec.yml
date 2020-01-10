@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/app/current
+hooks:
+  ApplicationStop:
+    - location: appspec-hooks/application-stop.sh
+      timeout: 60
+      runas: root
+  AfterInstall:
+    - location: appspec-hooks/after-install.sh
+      timeout: 60
+      runas: root
+  ApplicationStart:
+    - location: appspec-hooks/application-start.sh
+      timeout: 150
+      runas: root
