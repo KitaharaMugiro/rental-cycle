@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "$(npm bin)/ts-node src/server.ts"
+    "dev": "$(npm bin)/ts-node src/server.ts",
+    "start": "$(npm bin)/ts-node src/server.ts"
   },
   "author": "",
   "license": "ISC",
