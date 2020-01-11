@@ -5,7 +5,9 @@
     "outDir": "./dist/server",
     "strict": true,
     "sourceMap": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "exclude": ["dist", "node_modules"]
 }
