@@ -9,6 +9,7 @@ cd ./server
 npm install
 cd ./system-app 
 npm install
+cd ../
 
 $(npm bin)/forever start -c "npm run start-dev:server" ./server &
 $(npm bin)/forever start -c "npm run start-dev:system" ./system-app &
