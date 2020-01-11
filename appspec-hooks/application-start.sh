@@ -5,9 +5,9 @@ source /home/ec2-user/.nvm/nvm.sh
 npm install
 cd ./client-app 
 npm install
-cd ./server 
+cd ../server 
 npm install
-cd ./system-app 
+cd ../system-app 
 npm install
 cd ../
 
