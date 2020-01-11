@@ -2,7 +2,7 @@ import {
   WebSocketRequestProtocol,
   WebSocketResponseProtocol
 } from "./../../common/protocol/WebSocketProtocol";
-const WebSocketURL = "ws://localhost:8999";
+const WebSocketURL = "ws://0.0.0.0:8282";
 
 export class WebSocketClient {
   test(cb: (text: string) => void) {
