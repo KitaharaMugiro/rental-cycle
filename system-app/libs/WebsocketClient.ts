@@ -2,7 +2,8 @@ import {
   WebSocketRequestProtocol,
   WebSocketResponseProtocol
 } from "./../../common/protocol/WebSocketProtocol";
-const WebSocketURL = "ws://0.0.0.0:8282";
+const WebSocketURL =
+  "ws://rental-cycle-server-506242718.ap-northeast-1.elb.amazonaws.com";
 
 export class WebSocketClient {
   test(cb: (text: string) => void) {
