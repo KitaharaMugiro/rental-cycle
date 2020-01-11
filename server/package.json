@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node src/server.ts"
+    "dev": "$(npm bin)/ts-node src/server.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "ts-node": "^8.6.1",
     "ws": "^7.2.1"
   },
   "devDependencies": {

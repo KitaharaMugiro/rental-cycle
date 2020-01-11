@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev:client": "cd client-app && npm run dev -- -p 8080",
-    "start-dev:server": "cd server && npm run dev -- -p 8999",
-    "start-dev:system": "cd system-app && npm run dev -- -p 8082"
+    "start-dev:client": "npm --prefix ./client-app run dev -- -p 8080",
+    "start-dev:server": "npm --prefix  ./server run dev -- -p 8999",
+    "start-dev:system": "npm --prefix  ./system-app run dev -- -p 8082"
   },
   "repository": {
     "type": "git",

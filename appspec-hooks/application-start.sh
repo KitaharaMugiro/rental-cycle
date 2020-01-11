@@ -7,6 +7,6 @@ cd ./client-app & npm install
 cd ./server & npm install
 cd ./system-app & npm install
 
-LOG_DIR="./logs"
-$(npm bin)/forever start -c "npm run start-dev:server" ./ &
-$(npm bin)/forever start -c "npm run start-dev:system" ./
+$(npm bin)/forever start -c "npm run start-dev:server" ./server &
+$(npm bin)/forever start -c "npm run start-dev:system" ./system-app &
+$(npm bin)/forever start -c "npm run start-dev:client" ./client-app 
