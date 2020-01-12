@@ -32,7 +32,7 @@ export class SensorsTable {
     this.handler.createNewItem(this.tableName, item);
   }
 
-  async getItem(key: SensorKey) {
+  async getItem(key: SensorKey): Promise<SensorAttribute> {
     const data = await this.handler.readItem(this.tableName, key);
     if (data) {
       return data.Item;

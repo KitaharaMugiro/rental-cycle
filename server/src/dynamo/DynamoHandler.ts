@@ -32,15 +32,28 @@ export class DynamoHandler {
     });
   }
 
-  readItem(table: string, key: any) {
+  async readItem(table: string, key: any) {
     const docClient = new AWS.DynamoDB.DocumentClient();
     const params = {
       TableName: table,
       Key: key
     };
-    const readItemPromise = util.promisify(docClient.get);
+
+    //promisifyだとうまくいかない
+    //const readItemPromiseUtil = util.promisify(docClient.get);
+    const readItemPromise = (params: any) => {
+      return new Promise((resolve, reject) => {
+        docClient.get(params, (err, data) => {
+          if (err) return reject(err);
+          resolve(data);
+        });
+      });
+    };
+
     try {
-      return readItemPromise(params);
+      const data: any = await readItemPromise(params);
+      console.log(data);
+      return data;
     } catch (err) {
       console.error(
         "Unable to read item. Error JSON:",
