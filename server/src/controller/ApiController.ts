@@ -10,9 +10,9 @@ export class UserController {
       const queryUrl = "http://169.254.169.254/latest/meta-data/public-ipv4";
       const response = await axios.get(queryUrl);
       const IP_ADDRESS = response.data;
-      return `ws://${IP_ADDRESS}:8999`;
+      return `ws://${IP_ADDRESS}:8999/ws`;
     } else {
-      return "ws://localhost:8999";
+      return "ws://localhost:8999/ws";
     }
   }
 }

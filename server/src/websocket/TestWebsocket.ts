@@ -6,6 +6,7 @@ import * as WebSocket from "ws";
 
 export function TestWebsocket(wss: WebSocket.Server) {
   wss.on("connection", (ws: WebSocket) => {
+    console.log("websocket connection");
     ws.on("message", (message: string) => {
       const request: WebSocketRequestProtocol = JSON.parse(message);
       const response: WebSocketResponseProtocol = {

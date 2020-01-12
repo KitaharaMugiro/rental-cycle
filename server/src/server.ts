@@ -1,16 +1,20 @@
 import * as config from "config";
 import "reflect-metadata";
-import { createExpressServer } from "routing-controllers";
+import { createExpressServer, useExpressServer } from "routing-controllers";
 import * as WebSocket from "ws";
 import { TestWebsocket } from "./websocket/TestWebsocket";
 
-const server = createExpressServer({
+var express = require("express");
+var app = express();
+var server = require("http").createServer(app);
+
+useExpressServer(app, {
   cors: true,
   controllers: [__dirname + "/controller/*.ts"]
 });
 
 //websocket
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ server, path: "/ws" });
 TestWebsocket(wss);
 
 server.listen(8999, () => {
