@@ -16,6 +16,8 @@ kill $(lsof -t -i:8080) || echo "no running on 8080"
 kill $(lsof -t -i:8082) || echo "no running on 8082"
 kill $(lsof -t -i:8999) || echo "no running on 8999"
 
+export NODE_ENV=production
+
 # npm run build:server
 npm run build:system
 npm run build:client
