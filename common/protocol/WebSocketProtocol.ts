@@ -1,6 +1,6 @@
-export type WebSocketRequestProtocol = {
+export type WebSocketRequestProtocol<E> = {
   event: any;
-  data: any;
+  data: E;
 };
 
 export type WebSocketResponseProtocol = {

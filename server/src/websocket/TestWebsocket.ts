@@ -1,3 +1,5 @@
+import { SensorController } from "./../controller/SensorController";
+import { SensorValues } from "./../../../common/SensorValues";
 import {
   WebSocketResponseProtocol,
   WebSocketRequestProtocol
@@ -8,25 +10,18 @@ export function TestWebsocket(wss: WebSocket.Server) {
   wss.on("connection", (ws: WebSocket) => {
     console.log("websocket connection");
     ws.on("message", (message: string) => {
-      const request: WebSocketRequestProtocol = JSON.parse(message);
-      const response: WebSocketResponseProtocol = {
-        data: {
-          message: `Hello, you sent -> ${request.data.message}`
-        }
-      };
-      ws.send(JSON.stringify(response));
-    });
-
-    //サーバからクライアントに向かってメッセージを送る
-    setInterval(() => {
-      wss.clients.forEach(c => {
+      const request: WebSocketRequestProtocol<any> = JSON.parse(message);
+      if (request.event === "sensor-values") {
+        const data: SensorValues = request.data;
+        new SensorController().postSensorValues(data);
+      } else {
         const response: WebSocketResponseProtocol = {
           data: {
-            message: `This is sending you all`
+            message: `Hello, you sent -> ${request.data.message}`
           }
         };
-        c.send(JSON.stringify(response));
-      });
-    }, 3000);
+        ws.send(JSON.stringify(response));
+      }
+    });
   });
 }

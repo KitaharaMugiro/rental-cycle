@@ -1,5 +1,12 @@
-import { Controller, Get, Post, QueryParam } from "routing-controllers";
+import {
+  Controller,
+  Get,
+  Post,
+  QueryParam,
+  BodyParam
+} from "routing-controllers";
 import { SensorUsecase } from "./../usecase/SensorUsecase";
+import { SensorValues } from "../../../common/SensorValues";
 
 @Controller("/sensor")
 export class SensorController {
@@ -9,5 +16,9 @@ export class SensorController {
   }
 
   @Post("/")
-  async postSensorValues() {}
+  async postSensorValues(
+    @BodyParam("sensorValues") sensorValues: SensorValues
+  ) {
+    return SensorUsecase.saveSensorValue(sensorValues);
+  }
 }
