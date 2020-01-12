@@ -1,12 +1,11 @@
+import * as config from "config";
 import "reflect-metadata";
-import * as express from "express";
-import * as http from "http";
+import { createExpressServer } from "routing-controllers";
 import * as WebSocket from "ws";
 import { TestWebsocket } from "./websocket/TestWebsocket";
-import { UserController } from "./controller/TestController";
-import { createExpressServer } from "routing-controllers";
 
 const server = createExpressServer({
+  cors: true,
   controllers: [__dirname + "/controller/*.ts"]
 });
 
@@ -15,5 +14,6 @@ const wss = new WebSocket.Server({ server });
 TestWebsocket(wss);
 
 server.listen(8999, () => {
+  console.log(config);
   console.log("works on port 8999 :)");
 });

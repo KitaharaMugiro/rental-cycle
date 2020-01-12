@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { WebSocketClient } from "../libs/WebsocketClient";
 import axios from "axios";
+import { ApiClient } from "../apis/ApiClient";
 
 export default () => {
   const [text, setText] = useState("you will see some message");
   useEffect(() => {
     const setUpWebsocket = async () => {
-      const response = await axios.get(
-        "http://rental-cycle-server-506242718.ap-northeast-1.elb.amazonaws.com/api/ws"
-      );
-      console.log(response);
-      const client = new WebSocketClient(response.data);
+      const apiClient = new ApiClient();
+      const url = await apiClient.getWebsocketUrl();
+      const client = new WebSocketClient(url);
       client.test(text => setText(text));
     };
 

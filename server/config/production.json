@@ -1,0 +1,4 @@
+{
+  "env": "production",
+  "server": "rental-cycle-server-506242718.ap-northeast-1.elb.amazonaws.com"
+}
