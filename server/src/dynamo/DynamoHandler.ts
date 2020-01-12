@@ -50,16 +50,8 @@ export class DynamoHandler {
       });
     };
 
-    try {
-      const data: any = await readItemPromise(params);
-      console.log(data);
-      return data;
-    } catch (err) {
-      console.error(
-        "Unable to read item. Error JSON:",
-        JSON.stringify(err, null, 2)
-      );
-    }
+    const data: any = await readItemPromise(params);
+    return data;
   }
 
   deleteTable() {}
