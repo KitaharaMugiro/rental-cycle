@@ -11,11 +11,4 @@ export class ApiClient {
         "http://rental-cycle-server-506242718.ap-northeast-1.elb.amazonaws.com";
     }
   }
-
-  async getWebsocketUrl() {
-    const path = "/api/ws";
-    const url = this.host + path;
-    const response = await axios.get(url);
-    return response.data;
-  }
 }

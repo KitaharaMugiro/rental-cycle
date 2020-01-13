@@ -3,15 +3,28 @@ import {
   WebSocketRequestProtocol,
   WebSocketResponseProtocol
 } from "./../../common/protocol/WebSocketProtocol";
-//const WebSocketURL = "ws://52.194.191.134:8999";
-
 export class WebSocketClient {
-  private url: string;
   private ws: WebSocket;
-  constructor(url: string) {
+  static instance: WebSocketClient;
+
+  static getInstance() {
+    if (!this.instance) {
+      this.instance = new WebSocketClient();
+    }
+    return this.instance;
+  }
+
+  private constructor() {
+    console.log("env:" + process.env.NODE_ENV);
+    let url: string;
+    if (process.env.NODE_ENV === "development") {
+      url = "ws://localhost:8999/ws";
+    } else if (process.env.NODE_ENV === "production") {
+      url =
+        "ws://rental-cycle-server-506242718.ap-northeast-1.elb.amazonaws.com/ws";
+    }
     console.log("websocket url = " + url);
-    this.url = url;
-    this.ws = new WebSocket(this.url);
+    this.ws = new WebSocket(url);
   }
 
   sendSensorValues(sensorValues: SensorValues) {

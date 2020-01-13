@@ -1,48 +1,48 @@
 import { useRouter } from "next/router";
-import { WebSocketClient } from "../../libs/WebsocketClient";
 import { useEffect, useState } from "react";
-import { ApiClient } from "../../apis/ApiClient";
-import { PositionWatchman } from "../../libs/PositionWatchman";
 import { SensorDataWithoutId } from "../../../common/SensorValues";
+import { PositionWatchman } from "../../libs/PositionWatchman";
+import { WebSocketClient } from "../../libs/WebsocketClient";
+import { BatteryWatchman } from "../../libs/BatteryWatchman";
 
+//need refactoring...
 export default () => {
   const router = useRouter();
-  const [client, setClient] = useState<WebSocketClient>(undefined);
   const [sensorData, setSensorData] = useState<SensorDataWithoutId>();
+  const [needSendData, setNeedSendData] = useState(true);
 
   const id = router.query["id"] as string;
   useEffect(() => {
-    const setUpWebsocket = async () => {
-      const apiClient = new ApiClient();
-      const url = await apiClient.getWebsocketUrl();
-      const client = new WebSocketClient(url);
-      setClient(client);
-    };
-
-    const positionWatch = () => {
-      PositionWatchman(data => {
-        setSensorData(data);
-        //ここで何かのtriggerを発してsensorの値を送る
-      });
-    };
-
-    setUpWebsocket();
-    positionWatch();
+    WebSocketClient.getInstance();
+    PositionWatchman(data => {
+      setSensorData(data);
+      setNeedSendData(true);
+    });
+    BatteryWatchman(null);
   }, []);
 
   const sendSensorValues = () => {
-    if (client) {
+    if (needSendData) {
+      console.log("send sensor data to server");
+      const client = WebSocketClient.getInstance();
       client.sendSensorValues({
         systemAppId: id,
         ...sensorData
       });
+      setNeedSendData(false);
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      sendSensorValues();
+    }, 1000);
+  });
 
   return (
     <div>
       ID: {id} <br />
-      <button onClick={sendSensorValues}>センサー情報をwebsocketで送る</button>
+      sensor: {JSON.stringify(sensorData)}
     </div>
   );
 };

@@ -11,7 +11,8 @@
     "start:client": "npm --prefix ./client-app run start -- -p 80",
     "build:system": "npm --prefix ./system-app run build",
     "start:system": "npm --prefix ./system-app run start -- -p 8082",
-    "start:server": "npm --prefix  ./server run start -- -p 8999"
+    "start:server": "npm --prefix  ./server run start -- -p 8999",
+    "install:all": "npm install ; npm --prefix  ./server install ; npm --prefix  ./system-app install ; npm --prefix ./client-app install"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,6 @@
     "@types/config": "0.0.36",
     "axios": "^0.19.1",
     "config": "^3.2.4",
-    "forever": "^2.0.0",
-    "fs": "0.0.1-security"
+    "forever": "^2.0.0"
   }
 }

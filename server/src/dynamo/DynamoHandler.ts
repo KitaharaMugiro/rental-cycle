@@ -1,6 +1,6 @@
 import * as AWS from "aws-sdk";
 import { DynamoDB } from "aws-sdk";
-import * as util from "util";
+import logger from "../libs/logger";
 
 AWS.config.update({
   region: "ap-northeast-1"
@@ -19,15 +19,13 @@ export class DynamoHandler {
       TableName: table,
       Item: item
     };
-    console.log("Adding a new item...");
+    logger.info("Adding a new item...");
     docClient.put(params, function(err, data) {
       if (err) {
         console.error(
           "Unable to add item. Error JSON:",
           JSON.stringify(err, null, 2)
         );
-      } else {
-        console.log("Added item:", JSON.stringify(data, null, 2));
       }
     });
   }
@@ -78,7 +76,7 @@ export class DynamoHandler {
           JSON.stringify(err, null, 2)
         );
       } else {
-        console.log(
+        logger.info(
           "Created table. Table description JSON:",
           JSON.stringify(data, null, 2)
         );
