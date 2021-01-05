@@ -27,7 +27,7 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/config": "0.0.36",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "config": "^3.2.4",
     "forever": "^2.0.0"
   }
